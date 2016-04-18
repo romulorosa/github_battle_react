@@ -6,6 +6,7 @@ var Link = ReactRouter.Link
 var UserDetails = require('./UserDetails');
 var UserDetailsWrapper = require('./UserDetailsWrapper');
 var MainContainer = require('./MainContainer');
+var Loading = require('./Loading');
 
 function StartOver () {
   return (
@@ -27,16 +28,15 @@ function Tie (props) {
 }
 
 function Results (props) {
+  console.log("PROPS", props);
   if (props.isLoading === true) {
-    return <p> Loading </p>
+    return <Loading />
   }
-
   if (props.scores[0] === props.scores[1]) {
     return (
       <Tie scores={props.scores} playersInfo={props.playersInfo}/>
     )
   }
-
   var winningIndex = props.scores[0] > props.scores[1] ? 0 : 1;
   var losingIndex = winningIndex === 0 ? 1 : 0;
 
